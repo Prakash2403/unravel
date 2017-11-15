@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block links %}
+    <link rel="stylesheet" href={% static "login/css/login.css" %} />
+    <link rel="stylesheet" href={% static "login/css/reset.css" %}; media="screen" type="text/css" />
+{% endblock %}
+{% block content %}
+  <div class="wrap">
+      <div class="avatar">
+      <img src="http://cdn.ialireza.me/avatar.png">
+		</div>
+		<input type="text" placeholder="username" required>
+		<div class="bar">
+			<i></i>
+		</div>
+		<input type="password" placeholder="password" required>
+		<a href="" class="forgot_link">forgot ?</a>
+		<button>Sign in</button>
+  </div>
+
+  <script src={% static "login/js/login.js" %}></script>
+{% endblock %}
