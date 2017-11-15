@@ -1,5 +1,9 @@
 from django.shortcuts import render
 
+from youtube.models import Trending
+
 
 def trending(request):
-    return render(request=request, template_name='index/index.html')
+    trending_videos = Trending.objects.all()
+    context = {'trending': trending_videos}
+    return render(request=request, template_name='index/index.html', context=context)
