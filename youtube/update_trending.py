@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from .models import Trending
 from .search import youtube_search
 
