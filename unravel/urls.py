@@ -26,4 +26,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'login/login.html'},
         name='login'),
     url(r'^logout/$', auth_views.logout, name='logout')
-    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
