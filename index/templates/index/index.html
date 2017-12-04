@@ -54,10 +54,10 @@
                             {% for video in trending %}
                                 <div class="vid-item" >
                                     <div class="thumb">
-                                        <a id ="eg6kNoJmzkY" href={{ video.video_id }} >
+                                        <a id ="eg6kNoJmzkY" href="/redirect/?video_url='{{ video.video_id }}'">
                                             <img src="{{ video.thumbnail }}"></a>
                                     </div>
-                                    <div class="desc" href="{{ video.video_id }}">{{ video.title }}</div>
+                                    <div class="desc" href="/redirect/?video_url='{{ video.video_id }}'">{{ video.title }}</div>
                                 </div>
                             {% endfor %}
                         </div>

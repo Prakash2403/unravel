@@ -1,4 +1,6 @@
-from .models import Trending
+from django.contrib.auth.models import User
+
+from .models import Trending, History
 from .search import youtube_search
 
 YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v='
@@ -18,3 +20,11 @@ def update_trending_db():
         Trending.objects.all().delete()
     for video_obj in video_obj_list:
         video_obj.save()
+
+
+def update_history(usernanme, video_url):
+    user = User.objects.get(username=usernanme)
+    history_obj = History()
+    history_obj.user = user
+    history_obj.video_url = video_url
+    history_obj.save()
