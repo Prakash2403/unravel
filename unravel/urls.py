@@ -25,7 +25,10 @@ urlpatterns = [
     url(r'^', include('index.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'login/login.html'},
         name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout')
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^api/', include('api.urls')),
+    url(r'^signup/', include('user.urls'))
     ]
 
 if settings.DEBUG:

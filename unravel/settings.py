@@ -35,8 +35,11 @@ if not DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'index',
     'login',
+    'user.apps.UserConfig',
+    'social_django',
     'youtube.apps.YoutubeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,12 +49,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-MIDDLEWARE = [
+SOCIAL_AUTH_GITHUB_KEY = '0131477da45645abceb7'
+SOCIAL_AUTH_GITHUB_SECRET = '09f5cdbc774e035bfd078a1bc744c9dafc8cf843'
+
+SOCIAL_AUTH_TWITTER_KEY = 'vOG6AnP6LDwGm0R2XAhsC58SU'
+SOCIAL_AUTH_TWITTER_SECRET = 'jVCd7MCKmTPgAy7YjrmoL2TuquiixTyDqxWfhifDJhIGFFslOQ'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1448958155216929'
+SOCIAL_AUTH_FACEBOOK_SECRET = '2874266baf8db24b7370f83708f7aee1'
+
+
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -61,7 +76,7 @@ ROOT_URLCONF = 'unravel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -70,6 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -107,6 +124,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -132,3 +156,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
