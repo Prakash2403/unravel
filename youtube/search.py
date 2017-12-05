@@ -5,10 +5,13 @@ YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
 
-def youtube_search(search_query, max_results=25):
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
+def get_youtube_obj():
+    return build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
                     developerKey=DEVELOPER_KEY)
 
+
+def youtube_search(search_query, max_results=25):
+    youtube = get_youtube_obj()
     search_response = youtube.search().list(q=search_query,
                                             part="id,snippet",
                                             maxResults=max_results
