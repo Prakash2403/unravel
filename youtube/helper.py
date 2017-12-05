@@ -26,5 +26,5 @@ def update_history(usernanme, video_url):
     user = User.objects.get(username=usernanme)
     history_obj = History()
     history_obj.user = user
-    history_obj.video_url = video_url
+    history_obj.video_url = video_url[1:(len(video_url)-1)]
     history_obj.save()

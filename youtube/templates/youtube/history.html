@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content%}
+    {% for video in history %}
+        <li><a href="{{ video.video_url }}">{{ video.video_url }}</a></li>
+    {% endfor %}
+    {% if history is None %}
+        History Not Available
+    {% endif %}
+{% endblock %}

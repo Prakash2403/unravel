@@ -14,5 +14,4 @@ def redirect_to_youtube(request):
     update_history(request.user, request.GET.get('video_url'))
     video_url = request.GET.get('video_url')
     print(video_url[1:(len(video_url) - 1)]) # For excluding single inverted commas
-    print("Prakash")
     return redirect(video_url[1: len(video_url) - 1])

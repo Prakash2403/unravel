@@ -12,3 +12,6 @@ class Trending(models.Model):
 class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     video_url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
