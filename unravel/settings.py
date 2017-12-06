@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'playlist',
     'projects',
+    'search',
     'user.apps.UserConfig',
     'social_django',
     'youtube.apps.YoutubeConfig',
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SOCIAL_AUTH_GITHUB_KEY = '0131477da45645abceb7'
 SOCIAL_AUTH_GITHUB_SECRET = '09f5cdbc774e035bfd078a1bc744c9dafc8cf843'

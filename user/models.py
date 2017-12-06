@@ -8,6 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField(blank=True, null=True)
     email = models.EmailField()
+    email_confirmed = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=User)

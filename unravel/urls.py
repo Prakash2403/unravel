@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^signup/', include('user.urls')),
     url(r'^user/', include('youtube.urls')),
     url(r'^playlist/', include('playlist.urls')),
-    url(r'^projects/', include('projects.urls'))
+    url(r'^projects/', include('projects.urls')),
+    url(r'^search/', include('search.urls'))
     ]
 
 if settings.DEBUG:
