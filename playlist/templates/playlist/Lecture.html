@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+    <link href="{% static 'playlist/css/style23.css' %}" rel="stylesheet">
+{% endblock %}
+{% block background %}
+    <style>
+        body{
+            background-image: url("{% static 'index/images/6.png' %}");
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div id="div2">
+<div class="container-fluid">
+{% for category in categories %}
+<div class="row" id="ml" style="margin-top: 10rem">
+    <h3 class="heading"><b> {{ category }} </b></h3>
+    <div class="col-lg-10 col-lg-offset-1">
+            <div class="vid-list-container">
+                <div class="vid-list" style="color: #43a78c">
+                    {% for item in playlist %}
+                        {% if item.domain == category%}
+                            <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/eg6kNoJmzkY?autoplay=1&rel=0&showinfo=0&autohide=1'">
+                              <div class="thumb"><img src="{{ item.thumbnail_url }}" href="{{ item.playlist_url }}"></div>
+                                  <div class="desc">
+                                      <a href="{{ item.playlist_url }}">{{ item.title }}</a>
+                                  </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- LEFT AND RIGHT ARROWS -->
+            <div class="arrows">
+                <div class="arrow-left"><i class="glyphicon glyphicon-chevron-left"></i></div>
+                <div class="arrow-right"><i class="glyphicon glyphicon-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+    <br><br>
+<script>
+$(document).ready(function () {
+		    $(".arrow-right").bind("click", function (event) {
+		        event.preventDefault();
+		        $(".vid-list-container").stop().animate({
+		            scrollLeft: "+=500"
+		        }, 750);
+		    });
+		    $(".arrow-left").bind("click", function (event) {
+		        event.preventDefault();
+		        $(".vid-list-container").stop().animate({
+		            scrollLeft: "-=500"
+		        }, 750);
+		    });
+		});
+$(document).ready(function () {
+		    $(".arrow-right1").bind("click", function (event) {
+		        event.preventDefault();
+		        $(".vid-list-container1").stop().animate({
+		            scrollLeft: "+=500"
+		        }, 750);
+		    });
+		    $(".arrow-left1").bind("click", function (event) {
+		        event.preventDefault();
+		        $(".vid-list-container1").stop().animate({
+		            scrollLeft: "-=500"
+		        }, 750);
+		    });
+		});
+</script>
+</div>
+{% endblock %}

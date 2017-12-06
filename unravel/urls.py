@@ -29,7 +29,9 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^api/', include('api.urls')),
     url(r'^signup/', include('user.urls')),
-    url(r'^user/', include('youtube.urls'))
+    url(r'^user/', include('youtube.urls')),
+    url(r'^playlist/', include('playlist.urls')),
+    url(r'^projects/', include('projects.urls'))
     ]
 
 if settings.DEBUG:

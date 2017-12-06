@@ -15,18 +15,27 @@
           {% csrf_token %}
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="inputEmail" class="sr-only">Username</label>
-            <input type="text" style="margin-bottom: 1rem" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+            <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <button style="margin-top: 2rem" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
       <div id="anthr_way">
       <h3 id="hf">OR</h3>
+
       <div id="login_1">
         <a  href="{% url 'social:begin' 'github' %}"><i class="fa fa-github" style="font-size:24px; color:black"></i></a>
-        <a href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-twitter"style="font-size:24px; color:black" aria-hidden="true"></i></a>
-        <a href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook-f" style="font-size:24px;color:black"></i></a>
+    <a href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-twitter"style="font-size:24px; color:black" aria-hidden="true"></i></a>
+    <a href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook-f" style="font-size:24px;color:black"></i></a>
         </div>
+
       </div>
+      
+
+
+
     </div>
+    
+
+
 {% endblock %}

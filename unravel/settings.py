@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'api',
     'index',
     'login',
+    'playlist',
+    'projects',
     'user.apps.UserConfig',
     'social_django',
     'youtube.apps.YoutubeConfig',

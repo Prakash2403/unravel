@@ -28,18 +28,21 @@ def get_video_obj(search_result):
     video_obj.likes = metadata['likes']
     video_obj.dislikes = metadata['dislikes']
     video_obj.views = metadata['views']
+    video_obj.rating = metadata['rating']
     return video_obj
 
 
-def update_trending_db():
+def delete_old_trending_db():
+    Trending.objects.all().delete()
+
+
+def update_trending_db(search_topic):
     video_obj_list = []
-    search_response = youtube_search("Machine Learning")
+    search_response = youtube_search(search_topic)
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] == "youtube#video":
             video_obj = get_video_obj(search_result)
             video_obj_list.append(video_obj)
-    if len(video_obj_list) != 0:
-        Trending.objects.all().delete()
     for video_obj in video_obj_list:
         video_obj.save()
 
@@ -57,7 +60,8 @@ def get_video_metadata(url):
     return {
             'likes': video.likes,
             'dislikes': video.dislikes,
-            'views': video.viewcount
+            'views': video.viewcount,
+            'rating': video.rating
            }
 
 
@@ -68,14 +72,15 @@ def update_playlist_db(playlist_id, domain):
     playlist_obj.author = playlist.author
     playlist_obj.title = playlist.title
     playlist_obj.description = playlist.description
+    playlist_obj.playlist_url = YOUTUBE_PLAYLIST_URL + playlist_id
     playlist = pafy.get_playlist(playlist_url=YOUTUBE_PLAYLIST_URL+playlist_id)
     playlist_obj.thumbnail_url = playlist['items'][0]['pafy'].thumb
     playlist_obj.num_videos = len(playlist['items'])
     playlist_obj.save()
 
 
-def get_playlist_db():
-    search_response = youtube_search("Machine Learning")
+def get_playlist_db(topic_name, domain_name):
+    search_response = youtube_search(topic_name)
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] == "youtube#playlist":
-            update_playlist_db(search_result["id"]["playlistId"], "ML")
+            update_playlist_db(search_result["id"]["playlistId"], domain_name)

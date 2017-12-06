@@ -13,4 +13,4 @@ class YoutubeTrendingSerializer(serializers.ModelSerializer):
 class PlaylistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Playlist
-        fields = ('title', 'author', 'thumbnail_url', 'num_videos', 'description')
+        fields = ('title', 'author', 'thumbnail_url', 'num_videos', 'description', 'playlist_url')

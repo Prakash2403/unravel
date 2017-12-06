@@ -20,6 +20,7 @@ class Trending(models.Model):
     likes = models.BigIntegerField()
     dislikes = models.BigIntegerField()
     views = models.BigIntegerField()
+    rating = models.DecimalField(max_digits=6, decimal_places=3)
 
     def __str__(self):
         return self.title
@@ -34,9 +35,13 @@ class History(models.Model):
 
 
 class Playlist(models.Model):
+    playlist_url = models.URLField()
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     thumbnail_url = models.URLField()
     num_videos = models.IntegerField()
     domain = models.CharField(max_length=10)
     description = models.TextField(max_length=1000)
+    
+    def __str__(self):
+        return self.title

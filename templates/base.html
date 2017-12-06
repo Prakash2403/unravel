@@ -26,10 +26,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="Lecture.html">Playlists</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Books</a></li>
+                        <li><a href="/playlist">Playlists</a></li>
+                        <li><a href="/projects">Projects</a></li>
                     </ul>
                     <form  action = "http://www.google.com" class="navbar-form navbar-left">
                        <div class="input-group">
@@ -54,6 +52,8 @@
             </div>
         </nav>
     </div>
+{% block background %}
+{% endblock %}
 </body>
     {% block content%}
     {% endblock %}
