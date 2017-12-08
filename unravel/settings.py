@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ym#6c!$hw3dbn6@jxn=3748#a&y=xwqt_7pk9gmk0!uc83hv0#'
+SECRET_KEY = config('SECRET_KEY')
 
 PRODUCTION = os.environ.get("PRODUCTION", False)
 
@@ -54,14 +55,14 @@ INSTALLED_APPS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-SOCIAL_AUTH_GITHUB_KEY = '0131477da45645abceb7'
-SOCIAL_AUTH_GITHUB_SECRET = '09f5cdbc774e035bfd078a1bc744c9dafc8cf843'
+SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 
-SOCIAL_AUTH_TWITTER_KEY = 'vOG6AnP6LDwGm0R2XAhsC58SU'
-SOCIAL_AUTH_TWITTER_SECRET = 'jVCd7MCKmTPgAy7YjrmoL2TuquiixTyDqxWfhifDJhIGFFslOQ'
+SOCIAL_AUTH_TWITTER_KEY = config('SOCIAL_AUTH_TWITTER_KEY')
+SOCIAL_AUTH_TWITTER_SECRET = config('SOCIAL_AUTH_TWITTER_SECRET')
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1448958155216929'
-SOCIAL_AUTH_FACEBOOK_SECRET = '2874266baf8db24b7370f83708f7aee1'
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 
 MIDDLEWARE_CLASSES = [
@@ -105,8 +106,11 @@ WSGI_APPLICATION = 'unravel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST')
     }
 }
 
